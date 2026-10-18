@@ -1,9 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Instagram } from "lucide-react";
 import Button from "@/components/ui/Button";
 import SafeImage from "@/components/ui/SafeImage";
 import RemoteImage from "@/components/ui/RemoteImage";
 import HeroCarousel from "@/components/home/HeroCarousel";
+import ServicesCarousel from "@/components/home/ServicesCarousel";
 import { projects } from "@/lib/portfolio";
 import { services } from "@/lib/services";
 import { buildMetadata } from "@/lib/seo";
@@ -12,9 +14,9 @@ import { WA_MESSAGES, whatsappUrl } from "@/lib/whatsapp";
 
 export const metadata = {
   ...buildMetadata({
-  title: "SBK Technologies | Software Development & Digital Solutions",
-  description: "Website development, custom software, e-commerce and final-year project support from SBK Technologies.",
-  path: "/",
+    title: "SBK Technologies | Software Development & Digital Solutions",
+    description: "Website development, custom software, e-commerce and final-year project support from SBK Technologies.",
+    path: "/",
   }),
   title: { absolute: "SBK Technologies | Software Development & Digital Solutions" },
 };
@@ -23,47 +25,68 @@ export default function Home() {
   return (
     <>
       <HeroCarousel />
+      <ServicesCarousel />
 
-      <section className="bg-ink">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <h2 className="h-section max-w-2xl">Services built around your business</h2>
-        <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s) => (
-            <li key={s.slug} className="group overflow-hidden rounded-2xl border border-line bg-white shadow-card transition duration-200 hover:-translate-y-1 hover:border-electric/50">
-              <div className="relative aspect-[16/10]"><SafeImage k={s.image} sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" /></div>
-              <div className="p-5">
-                <h3 className="text-xl font-bold"><Link href={`/services/${s.slug}`} className="hover:text-electric">{s.title}</Link></h3>
-                <p className="mt-2 text-sm text-muted">{s.short}</p>
-                <a href={whatsappUrl(s.message)} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm font-semibold text-electric hover:underline">Enquire on WhatsApp</a>
-              </div>
-            </li>
-          ))}
-        </ul>
-        </div>
-      </section>
+      <section className="bg-[#FFFFFF] py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mb-10 max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2563EB]">Why choose us</p>
+            <h2 className="h-section mt-3">Technology built around practical business outcomes.</h2>
+          </div>
 
-      <section className="bg-wash">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <h2 className="h-section">Featured project</h2>
-        {projects.map((p) => (
-          <article key={p.slug} className="mt-8 grid overflow-hidden rounded-2xl border border-line bg-white shadow-card md:grid-cols-2">
-            <div className="relative aspect-[16/10]"><RemoteImage src={p.image} alt={p.imageAlt} sizes="(min-width:768px) 50vw, 100vw" /></div>
-            <div className="p-6 sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-wider text-electric">{p.category}</p>
-              <h3 className="mt-1 text-2xl font-bold">{p.title}</h3>
-              <p className="mt-3 text-muted">{p.summary}</p>
-              <div className="mt-5 flex flex-wrap gap-3"><Button href={p.caseStudy}>Read case study</Button><Button external variant="secondary" href={p.liveUrl}>Visit website</Button></div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-3xl border border-[#DCE6F3] bg-[#F7FAFF] p-6 shadow-[0_14px_30px_-20px_rgba(16,33,61,0.18)]">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF2FF] text-[#2563EB]">Q</div>
+              <h3 className="text-2xl font-semibold text-[#10213D]">Quality-first</h3>
+              <p className="mt-3 text-sm leading-6 text-[#53647C]">Clear requirements, maintainable code, and honest communication throughout every project.</p>
             </div>
-          </article>
-        ))}
+            <div className="rounded-3xl border border-[#DCE6F3] bg-[#F7FAFF] p-6 shadow-[0_14px_30px_-20px_rgba(16,33,61,0.18)]">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF2FF] text-[#2563EB]">C</div>
+              <h3 className="text-2xl font-semibold text-[#10213D]">Creative thinking</h3>
+              <p className="mt-3 text-sm leading-6 text-[#53647C]">We blend design, engineering, and business goals so the final product feels polished and useful.</p>
+            </div>
+            <div className="rounded-3xl border border-[#DCE6F3] bg-[#F7FAFF] p-6 shadow-[0_14px_30px_-20px_rgba(16,33,61,0.18)]">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF2FF] text-[#2563EB]">R</div>
+              <h3 className="text-2xl font-semibold text-[#10213D]">Reliable delivery</h3>
+              <p className="mt-3 text-sm leading-6 text-[#53647C]">From planning to deployment, we stay focused on practical outcomes and long-term maintainability.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-line bg-white">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center">
+      <section className="bg-[#EDF4FF] py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mb-10 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2563EB]">Featured project</p>
+              <h2 className="h-section mt-3">Work that moves businesses forward.</h2>
+            </div>
+          </div>
+          {projects.map((project) => (
+            <article key={project.slug} className="overflow-hidden rounded-[28px] border border-[#DCE6F3] bg-white shadow-[0_18px_36px_-24px_rgba(16,33,61,0.22)] md:grid md:grid-cols-2">
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#F7FAFF]">
+                <RemoteImage src={project.image} alt={project.imageAlt} sizes="(min-width:768px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02]" />
+              </div>
+              <div className="p-6 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2563EB]">{project.category}</p>
+                <h3 className="mt-3 text-3xl font-semibold text-[#10213D]">{project.title}</h3>
+                <p className="mt-4 text-base leading-7 text-[#53647C]">{project.summary}</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Button href={project.caseStudy}>Read case study</Button>
+                  <Button external variant="secondary" href={project.liveUrl}>View Project</Button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-[#DCE6F3] bg-[#FFFFFF] py-20">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center">
           <div>
-            <h2 className="h-section">Have a final-year project idea?</h2>
-            <p className="mt-2 max-w-xl text-silver">We help with requirements, planning, implementation, debugging, documentation and understanding your project.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2563EB]">Final-year projects</p>
+            <h2 className="h-section mt-3">Have an idea for a final-year project?</h2>
+            <p className="mt-3 max-w-xl text-base leading-7 text-[#53647C]">We help with requirements, planning, implementation, debugging, documentation, and technical understanding for software, AI, embedded, and VLSI projects.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Button href="/final-year-projects">Explore Student Projects</Button>
